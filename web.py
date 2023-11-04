@@ -62,7 +62,20 @@ def login():
 
 @app.route("/get_covered")
 def get_covered():
+    user_id = session.get("user_id")
+    if user_id is None and False:
+        return redirect("/login")
     return render_template("get_covered.html")
+
+
+@app.route("/payment")
+def payment():
+    user_id = session.get("user_id")
+    if user_id is None and False:
+        return redirect("/login")
+    user = db.session.get(Users, user_id)
+    print(user)
+    return render_template("payment.html")
 
 
 if __name__ == "__main__":
