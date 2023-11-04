@@ -271,8 +271,8 @@
                 </div>
                 <div data-v-e08e721e="" data-v-ee40d204="" id="flyout-sidebar" data-v-333e1336=""
                   class="flyout-sidebar-open">
-                  <div data-v-e08e721e="" class="position-relative">
-                    <div data-v-e08e721e="" class="flyout-sidebar-backdrop position-relative"></div>
+                  <!-- sidebar 1 -->
+                  <div data-v-e08e721e="" id="sidebar_1" class="position-relative">
                     <div data-v-e08e721e="" class="flyout-sidebar-content position-absolute px-3 px-md-4 pt-4"
                       style="width: 100%;">
                       <div data-v-e08e721e="" class="position-relative">
@@ -306,22 +306,31 @@
                               <div data-v-2993f244="" data-v-0ab504d7="" class="row base-tab mt-4 br-4 mx-0">
                                 <div data-v-2993f244=""
                                   class="limit-w w-100 d-flex align-items-center justify-content-between tab-h">
-                                  <div id="covers_div" class="col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-green fw-500">
+                                  <div id="covers_div"
+                                    class="col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-green fw-500">
                                     covers
-                                    <div data-v-2993f244="" class="position-absolute d-flex justify-content-center select-indicator mx-auto">
-                                      <span id="covers_indicator" data-v-2993f244="" class="select-indicator-span"></span>
+                                    <div data-v-2993f244=""
+                                      class="position-absolute d-flex justify-content-center select-indicator mx-auto">
+                                      <span id="covers_indicator" data-v-2993f244=""
+                                        class="select-indicator-span"></span>
                                     </div>
-                                      </div>
-                                      <div id="works_div" class="col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-gray-500 fw-300">
-                                        how to get
-                                    <div data-v-2993f244="" class="position-absolute d-flex justify-content-center select-indicator mx-auto">
-                                      <span style="display: none;" id="works_indicator" data-v-2993f244="" class="select-indicator-span"></span>
+                                  </div>
+                                  <div id="works_div"
+                                    class="col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-gray-500 fw-300">
+                                    how to get
+                                    <div data-v-2993f244=""
+                                      class="position-absolute d-flex justify-content-center select-indicator mx-auto">
+                                      <span style="display: none;" id="works_indicator" data-v-2993f244=""
+                                        class="select-indicator-span"></span>
                                     </div>
-                                      </div>
-                                  <div id="claim_div" class="col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-gray-500 fw-300">
+                                  </div>
+                                  <div id="claim_div"
+                                    class="col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-gray-500 fw-300">
                                     how to claim
-                                    <div data-v-2993f244="" class="position-absolute d-flex justify-content-center select-indicator mx-auto">
-                                      <span style="display: none;" id="claim_indicator" data-v-2993f244="" class="select-indicator-span"></span>
+                                    <div data-v-2993f244=""
+                                      class="position-absolute d-flex justify-content-center select-indicator mx-auto">
+                                      <span style="display: none;" id="claim_indicator" data-v-2993f244=""
+                                        class="select-indicator-span"></span>
                                     </div>
                                   </div>
                                 </div>
@@ -568,7 +577,8 @@
                                             <div data-v-339bcf51="" class="d-flex align-items-center pl-0 mr-3 max">
                                               <!----> <span data-v-339bcf51="" class="name fw-800">
                                                 How to claim
-                                              </span></div> <span data-v-339bcf51="" class="text-sm-16 col-lg-"></span>
+                                              </span>
+                                            </div> <span data-v-339bcf51="" class="text-sm-16 col-lg-"></span>
                                           </li>
                                           <ul data-v-339bcf51="" class="sublist w-100 mt-2">
                                             <li data-v-339bcf51="" class="list-item align-items-center mb-3">
@@ -656,13 +666,119 @@
                                       </div>
                                     </div>
                                   </div> <button data-v-0ab504d7="" data-v-2993f244=""
-                                    class="btn btn-primary mt-5 w-100">
+                                    class="btn btn-primary mt-5 w-100" onclick="get_covered()">
                                     Get Covered
                                   </button>
                                 </div>
                               </div>
                             </div>
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- sidebar 2 -->
+                  <div data-v-e08e721e="" id="sidebar_2" class="position-relative" style="display: none;">
+                    <div data-v-e08e721e="" style="width: 100%;"
+                      class="flyout-sidebar-content position-absolute px-3 px-md-4 pt-4">
+                      <div data-v-e08e721e="" class="position-relative">
+                        <div data-v-e08e721e="" class="d-flex justify-content-between mt-4 px-3 mb-4">
+                          <div data-v-e08e721e="">
+                            <h1 data-v-e08e721e=""
+                              class="m-0 fw-600 text-blue mb-0 text-xs-22 text-md-26 text-capitalize">
+                              Comprehensive Cover
+                            </h1>
+                            <p data-v-e08e721e="" class="fw-300 text-gray-600 text-14 m-0 mt-1">
+                              Enter plan details
+                            </p>
+                          </div>
+                        </div> <!---->
+                        <div data-v-e08e721e="" class="mb-4 pb-4 px-3">
+                          <div data-v-ee40d204="" data-v-e08e721e="" class="mt-2"><!----> <!----> <!---->
+                            <section data-v-58cdf5b4="" data-v-ee40d204="" price="0" data-v-e08e721e=""><span
+                                data-v-58cdf5b4="">
+                                <div data-v-58cdf5b4="" id="autoForm"><!---->
+                                  <fieldset data-v-58cdf5b4="" class="form-group" id="__BVID__63">
+                                    <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0"
+                                      id="__BVID__63__BV_label_">Category</legend>
+                                    <div><select data-v-58cdf5b4="" required="required" aria-required="true"
+                                        class="custom-select" id="__BVID__64">
+                                        <option value="1">Commercial</option>
+                                        <option value="2">Private</option>
+                                      </select><!----><!----><!----></div>
+                                  </fieldset> <span data-v-58cdf5b4="">
+                                    <fieldset data-v-58cdf5b4="" class="form-group" id="__BVID__66">
+                                      <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0"
+                                        id="__BVID__66__BV_label_">Type</legend>
+                                      <div><select data-v-58cdf5b4="" id="type" required="required" aria-required="true"
+                                          class="custom-select">
+                                          <option value="">Select vehicle Type</option>
+                                          <option value="3">Truck</option>
+                                          <option value="4">Car</option>
+                                          <option value="5">Bus</option>
+                                          <option value="7">Bike</option>
+                                          <option value="8">Van</option>
+                                          <option value="9">Mini-Van</option>
+                                          <option value="10">Special Types</option>
+                                          <option value="11">Tricycle</option>
+                                        </select>
+                                        <div data-v-58cdf5b4="" id="type-live-feedback" class="invalid-feedback">
+                                        </div><!----><!----><!---->
+                                      </div>
+                                    </fieldset>
+                                  </span> <span data-v-58cdf5b4="">
+                                    <fieldset data-v-58cdf5b4="" class="form-group" id="__BVID__69">
+                                      <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0"
+                                        id="__BVID__69__BV_label_">How many months are you buying for ?</legend>
+                                      <div><select data-v-58cdf5b4="" required="required" aria-required="true"
+                                          class="custom-select" id="__BVID__70">
+                                          <option value="1">Yearly</option>
+                                        </select>
+                                        <div data-v-58cdf5b4="" id="beneficiaries-live-feedback"
+                                          class="invalid-feedback">
+                                        </div><!----><!----><!---->
+                                      </div>
+                                    </fieldset>
+                                  </span> <span data-v-58cdf5b4="">
+                                    <fieldset data-v-58cdf5b4="" class="form-group mb-4" id="__BVID__72">
+                                      <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0"
+                                        id="__BVID__72__BV_label_">Vehicle Value</legend>
+                                      <div><input data-v-58cdf5b4="" id="vehicle-value" name="vehicle-value"
+                                          type="number" placeholder="1,000,000" required="required" min="1000000"
+                                          aria-required="true" class="form-control"
+                                          aria-describedby="vehicle-value-live-feedback">
+                                        <div data-v-58cdf5b4="" id="vehicle-value-live-feedback"
+                                          class="invalid-feedback">
+                                        </div><!----><!----><!---->
+                                      </div>
+                                    </fieldset>
+                                  </span>
+                                  <div data-v-58cdf5b4="" class="my-3">
+                                    <fieldset data-v-ee40d204="" class="form-group mt-3" id="__BVID__74">
+                                      <legend tabindex="-1" class="bv-no-focus-ring col-form-label pt-0"
+                                        id="__BVID__74__BV_label_">Do you have a promo code? (Optional)</legend>
+                                      <div>
+                                        <div data-v-ee40d204="" class="d-flex"><input data-v-ee40d204="" id="promo-code"
+                                            name="promo-code" type="text" placeholder="XXAD123" class="form-control"
+                                            aria-describedby="promo-code-live-feedback"> <button data-v-ee40d204=""
+                                            disabled="disabled" type="button"
+                                            class="btn btn-sm btn-secondary d-flex align-items-center"
+                                            style="cursor: pointer;">
+                                            apply
+                                            <!----></button></div><!----><!----><!---->
+                                      </div>
+                                    </fieldset>
+                                  </div>
+                                  <div data-v-58cdf5b4=""
+                                    class="bg-green-50 mt-5 p-3 text-xs-20 text-gray-800 fw-500 br-8 text-center">
+                                    ₦25,000
+                                    <!----> <!---->
+                                  </div> <button data-v-58cdf5b4="" type="submit" class="btn mt-5 w-100 btn-primary">
+                                    Proceed
+                                  </button>
+                                </div>
+                              </span></section>
+                          </div> <!---->
                         </div>
                       </div>
                     </div>

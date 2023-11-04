@@ -57,6 +57,17 @@ function show_claim() {
     claim_indicator.style.display = "block"
 }
 
+
+
+const sidebar_1 = document.getElementById("sidebar_1")
+const sidebar_2 = document.getElementById("sidebar_2")
+
+function get_covered() {
+    sidebar_1.style.display = "none"
+    sidebar_2.style.display = "block"
+}
+
+
 covers_div.onclick = show_covers
 works_div.onclick = show_works
 claim_div.onclick = show_claim
