@@ -1,9 +1,10 @@
 #!/usr/bin/python3
-from flask import Flask, render_template, request, redirect, flash
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 import logging
 
 app = Flask(__name__)
+app.secret_key = "mysecretkey"
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
 
@@ -42,7 +43,7 @@ def signup():
             db.session.add(user)
             db.session.commit()
             return redirect("/get_covered")
-        flash("Email already in use")
+        flash("Email already in use", "danger")
     return render_template("signup.html")
 
 
@@ -55,8 +56,7 @@ def login():
         user = Users.query.filter_by(email=email, password=password).first()
         if user:
             return redirect("/get_covered")
-        else:
-            print("Incorrect Info")
+        flash("Incorrent Information", "danger")
     return render_template("login.html")
 
 
