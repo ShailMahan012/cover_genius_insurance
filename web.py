@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, flash
 from flask_sqlalchemy import SQLAlchemy
 import logging
 
@@ -36,9 +36,13 @@ def signup():
         password = request.form.get("password")
         phone = request.form.get("phone")
 
-        user = Users(first_name=first_name, last_name=last_name, email=email, password=password, phone=phone)
-        db.session.add(user)
-        db.session.commit()
+        user = Users.query.filter_by(email=email).first()
+        if not user:
+            user = Users(first_name=first_name, last_name=last_name, email=email, password=password, phone=phone)
+            db.session.add(user)
+            db.session.commit()
+            return redirect("/get_covered")
+        flash("Email already in use")
     return render_template("signup.html")
 
 
@@ -50,10 +54,15 @@ def login():
         password = request.form.get("password")
         user = Users.query.filter_by(email=email, password=password).first()
         if user:
-            print("LOGIN")
+            return redirect("/get_covered")
         else:
             print("Incorrect Info")
     return render_template("login.html")
+
+
+@app.route("/get_covered")
+def get_covered():
+    return render_template("get_covered.html")
 
 
 if __name__ == "__main__":
