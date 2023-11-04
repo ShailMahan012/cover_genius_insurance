@@ -55,6 +55,7 @@ def login():
         password = request.form.get("password")
         user = Users.query.filter_by(email=email, password=password).first()
         if user:
+            session["user_id"] = user.id
             return redirect("/get_covered")
         flash("Incorrent Information", "danger")
     return render_template("login.html")
@@ -63,7 +64,7 @@ def login():
 @app.route("/get_covered")
 def get_covered():
     user_id = session.get("user_id")
-    if user_id is None and False:
+    if user_id is None:
         return redirect("/login")
     return render_template("get_covered.html")
 
@@ -71,11 +72,16 @@ def get_covered():
 @app.route("/payment")
 def payment():
     user_id = session.get("user_id")
-    if user_id is None and False:
+    if user_id is None:
         return redirect("/login")
     user = db.session.get(Users, user_id)
-    print(user)
-    return render_template("payment.html")
+    return render_template("payment.html", email=user.email)
+
+
+@app.route("/logout")
+def logout():
+    session.pop("user_id")
+    return redirect("/login")
 
 
 if __name__ == "__main__":
