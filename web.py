@@ -18,6 +18,7 @@ class Users(db.Model):
     first_name = db.Column(db.Text)
     last_name = db.Column(db.Text)
     email = db.Column(db.Text)
+    password = db.Column(db.Text)
     phone = db.Column(db.Text)
 
 
@@ -32,9 +33,10 @@ def signup():
         first_name = request.form.get("first_name")
         last_name = request.form.get("last_name")
         email = request.form.get("email")
+        password = request.form.get("password")
         phone = request.form.get("phone")
 
-        user = Users(first_name=first_name, last_name=last_name, email=email, phone=phone)
+        user = Users(first_name=first_name, last_name=last_name, email=email, password=password, phone=phone)
         db.session.add(user)
         db.session.commit()
     return render_template("signup.html")
