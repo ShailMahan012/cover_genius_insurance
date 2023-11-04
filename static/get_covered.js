@@ -61,12 +61,17 @@ function show_claim() {
 
 const sidebar_1 = document.getElementById("sidebar_1")
 const sidebar_2 = document.getElementById("sidebar_2")
+const sidebar_3 = document.getElementById("sidebar_3")
 
 function get_covered() {
     sidebar_1.style.display = "none"
     sidebar_2.style.display = "block"
 }
 
+function show_summary() {
+    sidebar_2.style.display = "none"
+    sidebar_3.style.display = "block"
+}
 
 covers_div.onclick = show_covers
 works_div.onclick = show_works
