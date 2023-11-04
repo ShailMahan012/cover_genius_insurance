@@ -42,6 +42,20 @@ def signup():
     return render_template("signup.html")
 
 
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        email = request.form.get("email")
+        password = request.form.get("password")
+        user = Users.query.filter_by(email=email, password=password).first()
+        if user:
+            print("LOGIN")
+        else:
+            print("Incorrect Info")
+    return render_template("login.html")
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5050, debug=True)
 
