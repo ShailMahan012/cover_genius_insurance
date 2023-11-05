@@ -15,3 +15,16 @@ function nav_close() {
 
     nav_menu.style.transform = "translateX(-100vw)"
 }
+
+
+function expand(div) {
+    const sibling = div.nextElementSibling
+
+    div.classList.toggle("active")
+    if (div.classList.contains("active")) {
+        sibling.style.maxHeight = ""
+    }
+    else {
+        sibling.style.maxHeight = "0"
+    }
+}
