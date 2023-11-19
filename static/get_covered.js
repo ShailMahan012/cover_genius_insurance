@@ -11,6 +11,9 @@ const covers_indicator = document.getElementById("covers_indicator")
 const works_indicator = document.getElementById("works_indicator")
 const claim_indicator = document.getElementById("claim_indicator")
 
+const vehicle_type = document.getElementById("type")
+const vehicle_value = document.getElementById("vehicle-value")
+
 const show_cover_btn_class = "col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-green fw-500"
 const hide_cover_btn_class = "col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-gray-500 fw-300"
 
@@ -69,8 +72,14 @@ function get_covered() {
 }
 
 function show_summary() {
-    sidebar_2.style.display = "none"
-    sidebar_3.style.display = "block"
+    if (vehicle_type.value && vehicle_value.value) {
+        sidebar_2.style.display = "none"
+        sidebar_3.style.display = "block"
+    }
+    else {
+        vehicle_type.reportValidity()
+        vehicle_value.reportValidity()
+    }
 }
 
 covers_div.onclick = show_covers

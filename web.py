@@ -37,14 +37,11 @@ def signup():
         address = request.form.get("address")
         phone = request.form.get("phone")
 
-        user = Users.query.filter_by(email=email).first()
-        if not user:
-            user = Users(first_name=first_name, last_name=last_name, email=email, address=address, phone=phone)
-            db.session.add(user)
-            db.session.commit()
-            session["user_id"] = user.id
-            return redirect("/get_covered")
-        flash("Email already in use", "danger")
+        user = Users(first_name=first_name, last_name=last_name, email=email, address=address, phone=phone)
+        db.session.add(user)
+        db.session.commit()
+        session["user_id"] = user.id
+        return redirect("/get_covered")
     return render_template("signup.html")
 
 
