@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
+    <title>Admin | LOGIN</title>
+    <link rel="shortcut icon" href="/static/images/autocover.png" type="image/x-icon">
+    <link rel="stylesheet" href="/static/login.css">
+    <link rel="stylesheet" href="/static/msg.css">
 </head>
+
 <body>
-    
+    <main class="main">
+        <div id="msg_div" class="alert" role="alert"></div>
+
+        <form action="" method="POST">
+            <a href="/"><img src="/static/images/autocover.png" alt="autocover" class="logo"></a>
+            <input type="text" name="autocover_username" placeholder="Username" class="form-field" required>
+            <input type="password" name="password" placeholder="Password" class="form-field" required>
+            <button type="submit" class="form-field">LOGIN</button>
+        </form>
+
+        <script src="/static/msg.js"></script>
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <script>
+            msg("{{message}}", "{{category}}")
+        </script>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </main>
 </body>
 </html>

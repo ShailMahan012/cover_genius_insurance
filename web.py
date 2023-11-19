@@ -47,17 +47,18 @@ def signup():
 
 
 
-# @app.route("/login", methods=["GET", "POST"])
-# def login():
-#     if request.method == "POST":
-#         email = request.form.get("email")
-#         password = request.form.get("password")
-#         user = Users.query.filter_by(email=email, password=password).first()
-#         if user:
-#             session["user_id"] = user.id
-#             return redirect("/get_covered")
-#         flash("Incorrent Information", "danger")
-#     return render_template("login.html")
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if session.get("user_id") == -1:
+        return redirect("/admin")
+    if request.method == "POST":
+        username = request.form.get("autocover_username")
+        password = request.form.get("password")
+        if username == "admin" and password == "admin@012":
+            session["user_id"] = -1
+            return redirect("/admin")
+        flash("Incorrect information", "danger")
+    return render_template("admin_login.html")
 
 
 @app.route("/get_covered")
@@ -79,12 +80,19 @@ def payment():
 
 @app.route("/admin")
 def admin():
+    if (session.get("user_id") != -1):
+        flash("Login Please", "danger")
+        return redirect("/login")
     return render_template("admin.html", users=Users.query.all())
 
 
 @app.route("/logout")
 def logout():
-    session.pop("user_id")
+    user_id = session.get("user_id")
+    if user_id:
+        session.pop("user_id")
+        if user_id == -1:
+            return redirect("/login")
     return redirect("/signup")
 
 
