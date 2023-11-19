@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <style>
+        body {
+            margin: 0;
+            padding:10px;
+        }
+
+        table {
+            width: 100%;
+        }
+
+        thead {
+            background-color: rgb(48, 48, 48);
+            color: white;
+        }
+
+        h1,
+        h3,
+        td,
+        th {
+            padding: 6px;
+            text-align: center;
+        }
+
+        .paid {
+            color: white;
+            background-color: rgb(0, 107, 0);
+        }
+
+        .not-paid {
+            color: white;
+            background-color: brown;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Admin Panel</h1>
+    <h3><a href="/logout">LOGOUT</a></h3>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Address</th>
+                <th>Phone</th>
+                <th>Paid?</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range((users | length)-1, -1, -1) %}
+            <tr>
+                <td>{{i + 1}}</td>
+                <td>{{users[i].first_name}} {{users[i].last_name}}</td>
+                <td>
+                    <a href="mailto:{{users[i].email}}">{{users[i].email}}</a>
+                </td>
+                <td>{{users[i].address}}</td>
+                <td>{{users[i].phone}}</td>
+                {% if users[i].paid %}
+                    {% set class="paid" %}
+                {% else %}
+                    {% set class="not-paid" %}
+                {% endif %}
+                <td class="{{class}}" style="font-weight: bolder;">{{users[i].paid}}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

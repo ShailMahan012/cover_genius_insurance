@@ -21,6 +21,7 @@ class Users(db.Model):
     email = db.Column(db.Text)
     address = db.Column(db.Text)
     phone = db.Column(db.Text)
+    paid = db.Column(db.Boolean, default=False, nullable=False)
 
 
 @app.route("/")
@@ -63,7 +64,7 @@ def signup():
 def get_covered():
     user_id = session.get("user_id")
     if user_id is None:
-        return redirect("/login")
+        return redirect("/signup")
     return render_template("get_covered.html")
 
 
@@ -71,9 +72,14 @@ def get_covered():
 def payment():
     user_id = session.get("user_id")
     if user_id is None:
-        return redirect("/login")
+        return redirect("/signup")
     user = db.session.get(Users, user_id)
     return render_template("payment.html", email=user.email)
+
+
+@app.route("/admin")
+def admin():
+    return render_template("admin.html", users=Users.query.all())
 
 
 @app.route("/logout")
