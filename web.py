@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
+import paypal as PAYPAL
 import logging
 
 app = Flask(__name__)
@@ -72,10 +73,37 @@ def get_covered():
 @app.route("/payment")
 def payment():
     user_id = session.get("user_id")
-    if user_id is None:
+    if user_id is None or user_id == -1:
         return redirect("/signup")
     user = db.session.get(Users, user_id)
-    return render_template("payment.html", email=user.email)
+    return render_template("payment.html", email=user.email, CLIENT_ID=PAYPAL.paypal["CLIENT_ID"])
+
+
+@app.route("/paypal/create_order")
+def create_order():
+    user_id = session.get("user_id")
+    if user_id is None:
+        return redirect("/signup")
+    resp = PAYPAL.create_order(user_id)
+    return resp
+
+
+@app.route("/paypal/capture_order/<order_id>", methods=["POST"])
+def capture_order(order_id):
+    user_id = session.get("user_id")
+    if user_id is None:
+        return redirect("/signup")
+
+    response, response_code = PAYPAL.capture_payment(order_id)
+    if response_code in (200, 201):
+        user = db.session.get(Users, user_id)
+        if user:
+            user.paid = True
+            db.session.commit()
+        else:
+            print("User not found:", user_id)
+
+    return response, response_code
 
 
 @app.route("/admin")
