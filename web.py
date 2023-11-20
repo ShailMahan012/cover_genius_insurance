@@ -2,6 +2,7 @@
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 import paypal as PAYPAL
+from paypal_config import paypal as paypal_config
 import logging
 
 app = Flask(__name__)
@@ -76,7 +77,7 @@ def payment():
     if user_id is None or user_id == -1:
         return redirect("/signup")
     user = db.session.get(Users, user_id)
-    return render_template("payment.html", email=user.email, CLIENT_ID=PAYPAL.paypal["CLIENT_ID"])
+    return render_template("payment.html", email=user.email, CLIENT_ID=paypal_config["CLIENT_ID"])
 
 
 @app.route("/paypal/create_order")
