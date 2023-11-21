@@ -1,7 +1,46 @@
 {% extends 'layout.html' %}
 {% block body %}
+<style>
+  #about {
+    position: fixed;
+    width: 100%;
+    transition-duration: 300ms;
+    z-index: 1000;
+    top: 68px;
+    bottom: 0;
+    left: -105%;
 
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    padding: 10px;
+    overflow-y: scroll;
+  }
+
+  #about .autocover_logo {
+    text-align: center;
+  }
+  #about .logo {
+    width: 200px;
+  }
+  #about > .text {
+    padding: 20px 30px;
+  }
+
+</style>
 <body data-aos-easing="ease" data-aos-duration="400" data-aos-delay="0">
+  <div id="about">
+      <div class="close"><img onclick="hide_about()" id="" src="https://mycovergenius.com/images/business/icons/hamburger-close.svg" alt="" class="img-fluid" style="display: block;"></div>
+      <!-- <div class="autocover_logo"><img src="/static/images/autocover.png" class="logo"></div> -->
+      <div class="text">
+        <h2 style="font-weight: bold;">About Us</h2>
+        Autocover is an online vehicle insurance platform where drivers in South Africa on Ride-hailing and delivery apps such as ( Uber, Bolt, UberEats, etc) can purchase the most suitable car insurance policy for E-hailing and delivery job/business.<br><br>
+        We help E-hailing and delivery app drivers find the best affordable car insurance in the market that is suitable for E-hailing driving job/business. <br><br>
+        Our partnerships with the best vehicle insurers in South Africa has enabled us to implement innovative price comparison technology in order to aggregate and provide the most affordable comprehensive car insurance for E- hailing  and delivery drivers. <br><br>
+        With our seamless process our customers can purchase E-hailing  comprehensive car insurance online from partner insurers on our platform with just a few clicks and we would have the comprehensive car insurance certificates sent to their email within 24 hours. <br><br>
+        Our customers can be rest assured that our partner insurers will cover the cost of any repairs when they file a claim through us, in the event that the insured vehicle has been damaged due to an accident. <br><br>
+      </div>
+  </div>
   <div id="__nuxt"><!---->
     <div id="__layout">
       <div>
@@ -709,7 +748,7 @@
                           class="img-fluid"></div>
                     </div>
                     <div data-v-6475f193="" class="w-100 overflow-hidden transition" style="max-height: 0;">
-                    <div data-v-6475f193="" class="mb-2"><a data-v-6475f193="" href="/about"
+                    <div data-v-6475f193="" class="mb-2"><a data-v-6475f193="" onclick="show_about()" href="#about"
                                   class="d-flex py-2 ml-2">
                                   <div data-v-6475f193="">
                                       About Us
@@ -840,9 +879,12 @@
               <div data-v-18e1e1b4="" class="overflow-hidden position-relative">
                 <div data-v-18e1e1b4="" class="d-flex flex-nowrap testimony-wrapper scroll-overflow-x pb-1">
                   <div data-v-1e97f21f="" data-v-18e1e1b4="" class="user-testimony-card">
-                    <div data-v-1e97f21f="" class="d-flex align-items-center"><img data-v-1e97f21f=""
-                        src="https://mycovergenius.com/images/individual/user-eunice.png" alt="Eunice"
-                        class="img-fluid user-img rounded-circle">
+                    <div data-v-1e97f21f="" class="d-flex align-items-center">
+                      <div data-v-1e97f21f=""
+                        class="user-img rounded-circle no-img d-flex align-items-center justify-content-center text-white font-weight-bold"
+                        style="background-color: rgb(122, 90, 248);">
+                        E
+                      </div>
                       <div data-v-1e97f21f="" class="ml-3">
                         <p data-v-1e97f21f="" class="user-name font-weight-bold">Eunice</p>
                         <p data-v-1e97f21f="" class="social-media-handle">@meet__eunice</p>
@@ -952,7 +994,7 @@
                       sure I'm attended to at the hospital
                     </p>
                   </div> -->
-                  <div data-v-1e97f21f="" data-v-18e1e1b4="" class="user-testimony-card">
+                  <!-- <div data-v-1e97f21f="" data-v-18e1e1b4="" class="user-testimony-card">
                     <div data-v-1e97f21f="" class="d-flex align-items-center">
                       <div data-v-1e97f21f=""
                         class="user-img rounded-circle no-img d-flex align-items-center justify-content-center text-white font-weight-bold"
@@ -967,7 +1009,7 @@
                     <p data-v-1e97f21f="" class="testimony-desc">
                       So far my care needs have been met and your service has been great.
                     </p>
-                  </div>
+                  </div> -->
                   <div data-v-1e97f21f="" data-v-18e1e1b4="" class="user-testimony-card">
                     <div data-v-1e97f21f="" class="d-flex align-items-center">
                       <div data-v-1e97f21f=""
@@ -1456,6 +1498,7 @@
   <script src="/static/nav.js"></script>
   <script src="/static/faq.js"></script>
   <script src="/static/set_year.js"></script>
+  <script src="/static/about.js"></script>
 </body>
 
 </html>
