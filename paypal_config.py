@@ -10,5 +10,5 @@ paypal = {
     "APP_SECRET": "EFo8QyW7WWPIpTwUySHWvHeMgOkKVdk2UA88uqL1SX-ad4BKW0tyO4ONK8MTw1z6O9PBGSm_yC_Fikq6",
 
     "CURRENCY": "USD",
-    "TOTAL_PRICE": 107,
+    "TOTAL_PRICE": 98,
 }
