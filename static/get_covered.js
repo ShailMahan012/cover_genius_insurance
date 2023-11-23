@@ -13,6 +13,7 @@ const claim_indicator = document.getElementById("claim_indicator")
 
 const vehicle_type = document.getElementById("type")
 const vehicle_value = document.getElementById("vehicle-value")
+const vehicle_year = document.getElementById("vehicle-year")
 
 const show_cover_btn_class = "col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-green fw-500"
 const hide_cover_btn_class = "col text-nowrap flex-nowrap text-center cursor-pointer text-capitalize py-1 text-gray-500 fw-300"
@@ -72,13 +73,14 @@ function get_covered() {
 }
 
 function show_summary() {
-    if (vehicle_type.value && vehicle_value.value) {
+    if (vehicle_type.value && vehicle_value.value && vehicle_year.validity.valid) {
         sidebar_2.style.display = "none"
         sidebar_3.style.display = "block"
     }
     else {
         vehicle_type.reportValidity()
         vehicle_value.reportValidity()
+        vehicle_year.reportValidity()
     }
 }
 
