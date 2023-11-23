@@ -25,6 +25,9 @@ class Users(db.Model):
     phone = db.Column(db.Text)
     paid = db.Column(db.Boolean, default=False, nullable=False)
 
+    vehicle_model = db.Column(db.Text)
+    vehicle_year = db.Column(db.Integer)
+
 
 @app.route("/")
 def index():
@@ -69,6 +72,20 @@ def get_covered():
     if user_id is None:
         return redirect("/signup")
     return render_template("get_covered.html")
+
+
+@app.route("/save_vehicle", methods=["POST"])
+def save_vehicle():
+    user_id = session.get("user_id")
+    if user_id:
+        user = db.session.get(Users, user_id)
+        if user:
+            data = request.json
+            user.vehicle_model = data["model"]
+            user.vehicle_year = data["year"]
+            db.session.commit()
+            return "true"
+    return "false"
 
 
 @app.route("/payment")

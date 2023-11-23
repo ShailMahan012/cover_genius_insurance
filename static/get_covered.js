@@ -74,8 +74,29 @@ function get_covered() {
 
 function show_summary() {
     if (vehicle_type.value && vehicle_value.value && vehicle_year.validity.valid) {
-        sidebar_2.style.display = "none"
-        sidebar_3.style.display = "block"
+        let model = vehicle_value.value
+        let year = vehicle_year.value
+        let data = JSON.stringify({
+            model: model,
+            year: year,
+        })
+        fetch("/save_vehicle", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: data
+        })
+        .then(resp=> {
+            return resp.text()
+        })
+        .then(resp=> {
+            if (resp == "true") {
+                sidebar_2.style.display = "none"
+                sidebar_3.style.display = "block"
+            }
+            else {
+                window.location.href = "/signup"
+            }
+        })
     }
     else {
         vehicle_type.reportValidity()

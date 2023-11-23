@@ -52,6 +52,8 @@
                 <th>Email</th>
                 <th>Address</th>
                 <th>Phone</th>
+                <th>Vehicle Model</th>
+                <th>Vehicle Year</th>
                 <th>Paid?</th>
             </tr>
         </thead>
@@ -65,6 +67,8 @@
                 </td>
                 <td>{{users[i].address}}</td>
                 <td>{{users[i].phone}}</td>
+                <td>{{users[i].vehicle_model}}</td>
+                <td>{{users[i].vehicle_year}}</td>
                 {% if users[i].paid %}
                     {% set class="paid" %}
                 {% else %}
