@@ -13,6 +13,12 @@ log.setLevel(logging.ERROR)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 app.app_context().push()
+domain = "autocover.co.in"
+
+
+@app.context_processor
+def inject_stage_and_region():
+    return dict(domain=domain)
 
 
 class Users(db.Model):
