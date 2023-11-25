@@ -17,7 +17,7 @@ domain = "autocover.co.in"
 
 
 @app.context_processor
-def inject_stage_and_region():
+def inject_domain():
     return dict(domain=domain)
 
 
