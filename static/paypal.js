@@ -1,5 +1,7 @@
-
 const paypal_container = document.getElementById("paypal-button-container")
+const payment_form = document.getElementById("payment-form")
+
+
 window.paypal
   .Buttons({
     async createOrder() {
@@ -60,7 +62,7 @@ window.paypal
           resultMessage(
             `Transaction ${transaction.status}: ${transaction.id}`,
           );
-          paypal_container.innerHTML = `<h1 style="text-align: center;font-size: 3em;width: 100%;">Transaction has been completed.<br>Thanks for your order.</h1>`;
+          txs_compeleted()
           console.log(
             "Capture result",
             orderData,
@@ -81,4 +83,10 @@ window.paypal
 function resultMessage(message) {
   const container = document.querySelector("#result-message");
   container.innerHTML = message;
+}
+
+function txs_compeleted() {
+  payment_form.innerHTML = `<h1 style="text-align: center;font-size: 2em;width: 100%;">
+  Transaction completed, thanks for your order.
+  </h1>`;
 }
