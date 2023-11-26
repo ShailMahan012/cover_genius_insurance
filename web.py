@@ -97,9 +97,9 @@ def save_vehicle():
 @app.route("/payment")
 def payment():
     user_id = session.get("user_id")
-    if user_id is None or user_id == -1:
-        return redirect("/signup")
     user = db.session.get(Users, user_id)
+    if user_id is None or user_id == -1 or user is None:
+        return redirect("/signup")
     return render_template("payment.html", email=user.email, CLIENT_ID=paypal_config["CLIENT_ID"])
 
 
