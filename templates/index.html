@@ -1197,9 +1197,18 @@
                     text-align: center;
                     margin-bottom: 10px;
                   }
+                  .uber_image {
+                    max-width: 40%;
+                  }
+                  @media screen and (max-width:800px) {
+                    .uber_image {
+                      max-width: 70%;
+                    }
+                  }
+
                 </style>
                 <div class="custom-img-div">
-                  <img class="w-100-p" src="/static/images/uber.webp" alt="">
+                  <img class="uber_image" src="/static/images/uber.webp" alt="">
                 </div>
                 <div class="custom-img-div">
                   <img class="w-100-p" src="/static/images/amazon_flex.webp" alt="">
@@ -1373,14 +1382,29 @@
             </section>
           </main>
         </div>
-        <footer data-v-be761012="" class="py-5 text-white bg-dark-blue">
-          <div data-v-be761012="" class="mc-container top-padding"><img data-v-be761012=""
+        <style>
+          footer {
+            padding-top: 25px !important;
+            padding-bottom: 20px !important;
+          }
+
+          .cop-pt {
+            padding-top: 0;
+          }
+          @media screen and (max-width:700px) {
+            .cop-pt {
+              padding-top: 2.5rem;
+            }
+          }
+        </style>
+        <footer data-v-be761012="" class=" text-white bg-dark-blue">
+          <div data-v-be761012="" class="mc-container"><img data-v-be761012=""
               src="/static/images/autocover.png" alt="mycovergenius" class="img-fluid" width="100px">
           </div>
           <section data-v-be761012="" class="mc-container">
             <div data-v-be761012="" class="row mx-0 pt-lg-4">
-              <div data-v-be761012="" class="col-lg-4 order-1 order-md-0 mt-4 mt-md-0 mb-md-5 col-md-4">
-                <div data-v-be761012="" class="d-flex align-items-start mb-4">
+              <div data-v-be761012="" class="col-lg-4 order-1 order-md-0 mt-4 mt-md-0 col-md-4">
+                <div data-v-be761012="" class="d-flex align-items-start">
                   <div data-v-be761012="" class="fw-500 text-xs-12 text-md-14 pr-2 text-capitalize">
                     email:
                   </div> <a data-v-be761012="" target="_blank" href="mailto:support@{{domain}}"
@@ -1391,8 +1415,8 @@
                     phone:
                   </div> <a data-v-be761012="" target="_blank" href="tel:+234 9070008899"
                     class="fw-300 text-xs-12 text-md-14 text-white-50">+234 9070008899</a>
-                </div>
-                <div data-v-be761012="" class="d-flex pt-3 align-items-center">
+                </div> -->
+                <!-- <div data-v-be761012="" class="d-flex pt-3 align-items-center">
                   <a data-v-be761012=""
                     href="https://web.facebook.com/mycovergenius/" target="_blank" class="pr-3 text-white-50"><img
                       data-v-be761012="" src="https://mycovergenius.com/img/icons/social-facebook.svg" alt=""
@@ -1427,7 +1451,7 @@
                 </div>
               </div> -->
             </div>
-            <div data-v-be761012="" class="pt-5 text-xs-12 text-md-14 fw-400 text-center"
+            <div data-v-be761012="" class="cop-pt text-xs-12 text-md-14 fw-400 text-center"
               style="border-color: rgb(71, 84, 103) !important;">Copyright © <span id="custom_year"></span> Autocover Ltd. All rights
               reserved.</div>
           </section>
