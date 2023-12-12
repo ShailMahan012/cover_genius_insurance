@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 import paypal as PAYPAL
 from paypal_config import paypal as paypal_config
 import logging
+from datetime import datetime
 
 app = Flask(__name__)
 app.secret_key = "mysecretkey"
@@ -31,8 +32,15 @@ class Users(db.Model):
     phone = db.Column(db.Text)
     paid = db.Column(db.Boolean, default=False, nullable=False)
 
-    vehicle_model = db.Column(db.Text)
-    vehicle_year = db.Column(db.Integer)
+    vehicle_type = db.Column(db.Text)
+    dob = db.Column(db.Date)
+    ip = db.Column(db.Text)
+
+def get_ip():
+    ip = request.headers.get('X-Forwarded-For')
+    if not ip:
+        ip = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    return ip
 
 
 @app.route("/")
@@ -87,8 +95,12 @@ def save_vehicle():
         user = db.session.get(Users, user_id)
         if user:
             data = request.json
-            user.vehicle_model = data["model"]
-            user.vehicle_year = data["year"]
+            date = data.get("dob")
+            date = date.split("-")
+            date = list(map(int, date))
+            user.dob = datetime(date[0], date[1], date[2])
+            user.ip = get_ip()
+            user.vehicle_type = data.get("vehicle_type")
             db.session.commit()
             return "true"
     return "false"
