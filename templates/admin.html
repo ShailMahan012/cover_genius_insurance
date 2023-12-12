@@ -52,8 +52,9 @@
                 <th>Email</th>
                 <th>Address</th>
                 <th>Phone</th>
-                <th>Vehicle Model</th>
-                <th>Vehicle Year</th>
+                <th>Vehile Type</th>
+                <th>DOB(d, m y)</th>
+                <th>IP</th>
                 <th>Paid?</th>
             </tr>
         </thead>
@@ -67,8 +68,13 @@
                 </td>
                 <td>{{users[i].address}}</td>
                 <td>{{users[i].phone}}</td>
-                <td>{{users[i].vehicle_model}}</td>
-                <td>{{users[i].vehicle_year}}</td>
+                <td>{{users[i].vehicle_type}}</td>
+                {% if users[i].dob %}
+                    <td>{{users[i].dob.strftime("%d, %m %Y")}}</td>
+                {% else %}
+                    <td>{{users[i].dob}}</td>
+                {% endif %}
+                <td>{{users[i].ip}}</td>
                 {% if users[i].paid %}
                     {% set class="paid" %}
                 {% else %}
