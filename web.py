@@ -57,7 +57,7 @@ def signup():
         address = request.form.get("address")
         phone = request.form.get("phone")
 
-        user = Users(first_name=first_name, last_name=last_name, email=email, address=address, phone=phone)
+        user = Users(first_name=first_name, last_name=last_name, email=email, address=address, phone=phone, ip=get_ip())
         db.session.add(user)
         db.session.commit()
         session["user_id"] = user.id
@@ -99,7 +99,6 @@ def save_vehicle():
             date = date.split("-")
             date = list(map(int, date))
             user.dob = datetime(date[0], date[1], date[2])
-            user.ip = get_ip()
             user.vehicle_type = data.get("vehicle_type")
             db.session.commit()
             return "true"

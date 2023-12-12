@@ -69,7 +69,11 @@
                 <td>{{users[i].address}}</td>
                 <td>{{users[i].phone}}</td>
                 <td>{{users[i].vehicle_type}}</td>
-                <td>{{users[i].dob.strftime("%d, %m %Y")}}</td>
+                {% if users[i].dob %}
+                    <td>{{users[i].dob.strftime("%d, %m %Y")}}</td>
+                {% else %}
+                    <td>{{users[i].dob}}</td>
+                {% endif %}
                 <td>{{users[i].ip}}</td>
                 {% if users[i].paid %}
                     {% set class="paid" %}
