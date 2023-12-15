@@ -3,3 +3,5 @@ greenlet==2.0.0
 flask_sqlalchemy
 urllib3==1.26.6
 requests
+stripe
+

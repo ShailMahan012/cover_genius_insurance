@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 from flask import Flask, render_template, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
-import paypal as PAYPAL
-from paypal_config import paypal as paypal_config
+import stripe
+from stripe_config import stripe_config
 import logging
 from datetime import datetime
 
@@ -14,12 +14,14 @@ log.setLevel(logging.ERROR)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 db = SQLAlchemy(app)
 app.app_context().push()
-domain = "autocoverltd.com"
+domain = ('https', "autocoverltd.com")
+domain = ('http', "localhost:5050")
+stripe.api_key = stripe_config['KEY']
 
 
 @app.context_processor
 def inject_domain():
-    return dict(domain=domain)
+    return dict(domain=domain[1])
 
 
 class Users(db.Model):
@@ -110,37 +112,42 @@ def save_vehicle():
 @app.route("/payment")
 def payment():
     user_id = session.get("user_id")
-    if user_id is None or user_id == -1:
-        return redirect("/signup")
     user = db.session.get(Users, user_id)
-    return render_template("payment.html", email=user.email, CLIENT_ID=paypal_config["CLIENT_ID"])
-
-
-@app.route("/paypal/create_order")
-def create_order():
-    user_id = session.get("user_id")
-    if user_id is None:
+    if user_id is None or user_id == -1 or user is None:
         return redirect("/signup")
-    resp = PAYPAL.create_order(user_id)
-    return resp
+    return render_template("payment.html", email=user.email, payed=user.paid)
 
 
-@app.route("/paypal/capture_order/<order_id>", methods=["POST"])
-def capture_order(order_id):
+@app.route('/create-checkout-session')
+def create_checkout_session():
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            line_items=[
+                {
+                    'price': stripe_config['PRD_ID'],
+                    'quantity': stripe_config['QUANTITY'],
+                },
+            ],
+            mode='payment',
+            success_url = f'{domain[0]}://{domain[1]}/yfufcn1qqt',
+            cancel_url = f'{domain[0]}://{domain[1]}/payment',
+        )
+    except Exception as e:
+        print(e)
+        return str(e)
+
+    return redirect(checkout_session.url, code=303)
+
+
+@app.route("/yfufcn1qqt")
+def accept_payment():
     user_id = session.get("user_id")
-    if user_id is None:
-        return redirect("/signup")
-
-    response, response_code = PAYPAL.capture_payment(order_id)
-    if response_code in (200, 201):
+    if user_id:
         user = db.session.get(Users, user_id)
-        if user:
-            user.paid = True
-            db.session.commit()
-        else:
-            print("User not found:", user_id)
-
-    return response, response_code
+        user.paid = True
+        db.session.commit()
+        return redirect("/payment")
+    return redirect("/signup")
 
 
 @app.route("/admin")
