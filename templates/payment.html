@@ -190,10 +190,31 @@
                           <div class="managedaccount__timer">
                             <div class="expiry-information">
                               <div>
-                    <div id="paypal-button-container" style="padding: 10px;margin-top: 50px"></div>
-                    <p id="result-message"></p>
-                    <script src="https://www.paypal.com/sdk/js?client-id={{CLIENT_ID}}&currency=USD"></script>
-                    <script src="/static/paypal.js"></script>
+                                <style>
+                                  #custom_pay {
+                                    display: none;
+                                    padding: 10px;
+                                    color: white;
+                                    background-color: rgb(38, 38, 147);
+                                    border-radius: 10px;
+                                    text-align: center;
+                                    text-decoration: none;
+                                    width: 100%;
+                                    transition-duration: 200ms;
+                                  }
+                                  #custom_pay:hover {
+                                    background-color: rgb(20, 20, 94);
+                                  }
+                                </style>
+                                <a href="/create-checkout-session" id="custom_pay">Pay</a>
+                                <script>
+                                  {% if payed == True %}
+                                    const payed = true;
+                                  {% else %}
+                                    const payed = false;
+                                  {% endif %}
+                                </script>
+                                <script src="/static/stripe.js"></script>
                               </div>
                             </div>
                           </div>
