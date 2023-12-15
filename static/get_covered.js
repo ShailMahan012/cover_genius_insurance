@@ -66,16 +66,23 @@ const sidebar_1 = document.getElementById("sidebar_1")
 const sidebar_2 = document.getElementById("sidebar_2")
 const sidebar_3 = document.getElementById("sidebar_3")
 
+function show_comprehensive_covers() {
+    sidebar_1.style.display = "block"
+    sidebar_2.style.display = "none"
+}
+
 function get_covered() {
     sidebar_1.style.display = "none"
     sidebar_2.style.display = "block"
+    sidebar_3.style.display = "none"
 }
 
 function show_summary() {
     if (vehicle_type.value && dob.validity.valid) {
+        let type = vehicle_type.value
         let data = JSON.stringify({
-            dob: dob.value,
-            vehicle_type: vehicle_type.value,
+            vehicle_type: type,
+            dob: dob.value
         })
         fetch("/save_vehicle", {
             method: "POST",
